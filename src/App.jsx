@@ -6,22 +6,35 @@ import { db } from "./data/db.js";
 function App() {
 
   const [data, setData] = useState(db);
+  const [cart, setCart] = useState([]);
 
+  function addToCart(item) {
+    const itemExists = cart.findIndex((product) => product.id === item.id)
+
+    if(itemExists >= 0) {
+      const updatedCart = [...cart]
+      updatedCart[itemExists].quantity++
+      setCart(updatedCart)
+
+    } else {
+      item.quantity = 1
+      setCart(prevState => [...prevState, item])
+    }
+  }
 
   return (
     <>
       <Header />
-
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
           {data?.map(guitar => <Guitar 
-            key={guitar.name}
-            name={guitar.name}
-            price={guitar.price}
-            description={guitar.description}
-            image={guitar.image}
+            key={guitar.id}
+            guitar={guitar}
+            cart={cart}
+            setCart={setCart}
+            addToCart={addToCart}
           />)}
           
         </div>
