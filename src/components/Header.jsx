@@ -21,7 +21,7 @@ function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clea
             <div className="carrito">
               <img
                 className="img-fluid"
-                src="./public/img/carrito.png"
+                src="/img/carrito.png"
                 alt="imagen carrito"
               />
 
