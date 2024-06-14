@@ -5,10 +5,10 @@ import { db } from "./data/db.js";
 
 function App() {
 
-  const dataFromLS = JSON.parse(localStorage.getItem('guitarCart'))
+  const initialCart = JSON.parse(localStorage.getItem('guitarCart'))
 
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState(() => dataFromLS.length ? dataFromLS : []);
+  const [data] = useState(db);
+  const [cart, setCart] = useState(() => initialCart.length ? initialCart : []);
 
   const MAX_ITEMS = 5
 
