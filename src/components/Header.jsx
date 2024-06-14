@@ -27,7 +27,7 @@ function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clea
 
               <div id="carrito" className="bg-white p-3">
 
-                {cart.length ? (
+                {cart?.length ? (
                   <>
                     <table className="w-100 table">
                       <thead>

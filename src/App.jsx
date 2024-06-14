@@ -8,7 +8,7 @@ function App() {
   const initialCart = JSON.parse(localStorage.getItem('guitarCart'))
 
   const [data] = useState(db);
-  const [cart, setCart] = useState(() => initialCart.length ? initialCart : []);
+  const [cart, setCart] = useState(() => initialCart?.length ? initialCart : []);
 
   const MAX_ITEMS = 5
 
