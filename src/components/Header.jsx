@@ -12,7 +12,7 @@ function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clea
             <a href="index.html">
               <img
                 className="img-fluid"
-                src="./public/img/logo.svg"
+                src="/img/logo.svg"
                 alt="imagen logo"
               />
             </a>
