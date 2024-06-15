@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Guitar = ({ guitar, addToCart }) => {
     const {id, name, price, image, description} = guitar
 
