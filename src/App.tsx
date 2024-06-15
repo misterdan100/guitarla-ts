@@ -1,6 +1,8 @@
+
 import Header from "./components/Header";
 import Guitar from "./components/Guitar";
-import useCart from "./hooks/useCart.js";
+import useCart from "./hooks/useCart.ts";
+
 
 function App() {
 
@@ -14,7 +16,6 @@ function App() {
     cleanCart,
     cartTotal,
   } = useCart();
-
 
   return (
     <>

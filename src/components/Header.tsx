@@ -1,6 +1,15 @@
-import useCart from "../hooks/useCart.js";
+import type { CartItem, Guitar } from '../types/index.ts'
 
-function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, cleanCart, cartTotal }) {
+type HeaderProps = {
+  cart: CartItem[],
+  removeFromCart: (id: Guitar['id']) => void,
+  increaseQuantity: (id: Guitar['id']) => void,
+  decreaseQuantity: (id: Guitar['id']) => void,
+  cleanCart: () => void,
+  cartTotal: number
+}
+
+function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, cleanCart, cartTotal }: HeaderProps) {
 
   return (
     <header className="py-5 header">
