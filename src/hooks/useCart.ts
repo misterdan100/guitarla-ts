@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { db } from "../data/db.ts";
-import type { Guitar, CartItem, GuitarID } from "../types/index.ts";
+import type { CartItem, GuitarID } from "../types/index.ts";
 
 const useCart = () => {
   
@@ -10,7 +9,6 @@ const useCart = () => {
     return localStorageCart ? JSON.parse(localStorageCart) : []
   }
 
-  const [data] = useState(db);
   const [cart, setCart] = useState(initialCart);
 
   const MAX_ITEMS = 5
@@ -18,20 +16,6 @@ const useCart = () => {
   useEffect(() => {
     localStorage.setItem('guitarCart', JSON.stringify(cart))
   }, [cart])
-
-  function addToCart(item: Guitar) {
-    const itemExists = cart.findIndex((product) => product.id === item.id)
-
-    if(itemExists >= 0) {
-      const updatedCart: any = [...cart]
-      updatedCart[itemExists].quantity++
-      setCart(updatedCart)
-
-    } else {
-      const newItem: CartItem = {...item, quantity: 1}
-      setCart(prevState => [...prevState, newItem])
-    }
-  }
 
   function removeFromCart(id: GuitarID) {
     // const updatedCart = cart.filter( item => id !== item.id)
@@ -71,9 +55,7 @@ const useCart = () => {
   const cartTotal = useMemo(() => cart.reduce((total, current) => total + (current.quantity ? current.quantity * current.price: 0),0), [cart])
 
   return {
-    data,
     cart,
-    addToCart,
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
