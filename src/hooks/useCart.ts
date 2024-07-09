@@ -52,7 +52,7 @@ const useCart = () => {
     setCart([])
   }
 
-  const cartTotal = useMemo(() => cart.reduce((total, current) => total + (current.quantity ? current.quantity * current.price: 0),0), [cart])
+
 
   return {
     cart,
@@ -60,7 +60,6 @@ const useCart = () => {
     increaseQuantity,
     decreaseQuantity,
     cleanCart,
-    cartTotal
   }
 
 }

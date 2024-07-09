@@ -59,11 +59,11 @@ export const cartReducer = (
     }
 
     if(actions.type === 'remove-from-cart') {
-
+        const updatedCart = state.cart.filter( guitar => guitar.id !== actions.payload.id)
 
         return {
             ...state,
-
+            cart: updatedCart
         }
     }
 
