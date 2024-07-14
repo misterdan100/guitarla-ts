@@ -15,13 +15,24 @@ export type CartState = {
     cart: CartItem[]
 }
 
+const initialCart = () => {
+    const isExistLS = localStorage.getItem('cart2.0')
+
+    if(isExistLS) {
+        return JSON.parse(isExistLS)
+    } else {
+        return []
+    }
+}
+
 // 2.1 Create Initial state
 export const initialState : CartState = {
     data: db,
-    cart: []
+    cart: initialCart()
 }
 
 const MAX_ITEMS = 5
+const MIN_ITEMS = 1
 
 // 3. Create reducer function
 export const cartReducer = (
@@ -52,6 +63,7 @@ export const cartReducer = (
         const newItem: CartItem = { ...actions.payload.item, quantity: 1 };
         updatedCart = [...state.cart, newItem];
       }
+
       return {
         ...state,
         cart: updatedCart,
@@ -69,7 +81,7 @@ export const cartReducer = (
 
     if(actions.type === 'decrease-quantity') {
         const updatedCart = state.cart.map( item => {
-            if(item.id === actions.payload.id && item.quantity > 1) {
+            if(item.id === actions.payload.id && item.quantity > MIN_ITEMS) {
                 return {
                     ...item,
                     quantity: item.quantity - 1
@@ -103,8 +115,6 @@ export const cartReducer = (
     }
 
     if(actions.type === 'clear-cart') {
-
-
         return {
             ...state,
             cart: []
