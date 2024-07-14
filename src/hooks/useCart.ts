@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import type { CartItem, GuitarID } from "../types/index.ts";
 
 const useCart = () => {

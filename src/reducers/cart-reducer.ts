@@ -68,20 +68,37 @@ export const cartReducer = (
     }
 
     if(actions.type === 'decrease-quantity') {
-
+        const updatedCart = state.cart.map( item => {
+            if(item.id === actions.payload.id && item.quantity > 1) {
+                return {
+                    ...item,
+                    quantity: item.quantity - 1
+                }
+            } else {
+                return item
+            }
+        })
 
         return {
             ...state,
-
+            cart: updatedCart
         }
     }
 
     if(actions.type === 'increase-quantity') {
 
+        const updatedCart = state.cart.map( item => {
+            if(item.id === actions.payload.id && item.quantity < MAX_ITEMS) {
+                // this way to avoid duplicate quantity
+                return {...item, quantity: item.quantity + 1}
+            } else {
+                return item
+            }
+        })
 
         return {
             ...state,
-
+            cart: updatedCart
         }
     }
 
@@ -90,7 +107,7 @@ export const cartReducer = (
 
         return {
             ...state,
-
+            cart: []
         }
     }
 
